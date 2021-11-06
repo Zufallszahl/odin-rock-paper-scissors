@@ -2,6 +2,8 @@ let playerScore = 0;
 let computerScore = 0;
 
 let choices = document.querySelectorAll(".player-choice")
+let declareWinner = document.querySelector(".winner");
+let result = document.querySelector(".round-result")
 
 const plays = ['rock', 'paper', 'scissors'];
 
@@ -24,8 +26,6 @@ function computerPlay() {
 }
 
 function roundResults(playerSelection, computerSelection) {
-    let result = document.querySelector(".round-result")
-
     if (playerSelection == computerSelection) {
         result.textContent = "It's a tie!"
     } else if ((playerSelection == 'rock' && computerSelection == 'paper') ||
@@ -42,22 +42,22 @@ function roundResults(playerSelection, computerSelection) {
         playerScore = ++playerScore
         updatePlayerScore()
     }
-
 }
 
 function declareResult() {
-    let declareWinner = document.querySelector(".winner");
     let numberOfRounds = document.getElementById("rounds").value
+    let retryButton = document.querySelector("#try-again")
+
     if ((playerScore == numberOfRounds) || (computerScore == numberOfRounds)) {
         if (playerScore > computerScore) {
             declareWinner.textContent = 'Game! You win!'
-            tryAgain()
+            retryButton.innerText = 'Play again?'
         } else if (computerScore > playerScore) {
             declareWinner.textContent = 'Game! You lose!'
-            tryAgain()
+            retryButton.innerText = 'Try again?'
         } else {
             declareWinner.textContent = 'Game! It\'s a tie!'
-            tryAgain()
+            retryButton.innerText = 'Try again?'
         }
     } else {
         //do nothing
@@ -68,11 +68,10 @@ choices.forEach((choice) => {
     choice.addEventListener('click', () => {
         playerSelection = choice.value
         computerSelection = computerPlay()
-        console.log(roundResults(playerSelection, computerSelection))
+        roundResults(playerSelection, computerSelection)
         declareResult()
     })
 })
-
 
 function updatePlayerScore() {
     let playerScoreCounter = document.querySelector(".player-score")
@@ -89,6 +88,9 @@ function tryAgain() {
     computerScore = 0;
     updatePlayerScore();
     updateComputerScore();
+
+    declareWinner.textContent = ''
+    result.textContent = ''
 }
 
 
