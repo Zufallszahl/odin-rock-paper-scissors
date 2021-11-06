@@ -2,11 +2,15 @@ let playerScore = 0;
 let computerScore = 0;
 
 let choices = document.querySelectorAll(".player-choice")
-let numberOfRounds = document.getElementById("rounds").value
 
 const plays = ['rock', 'paper', 'scissors'];
 
 function checkIfRoundNumValid() {
+    playerScore = 0;
+    computerScore = 0;
+    updatePlayerScore()
+    updateComputerScore()
+
     rounds = document.getElementById("rounds").value
     if (!Number.isInteger(parseInt(rounds)) || (parseInt(rounds) <= 0)) {
         document.querySelector('.integer-check').textContent = 'You need to input an integer number larger than 0.';
@@ -21,16 +25,42 @@ function computerPlay() {
 
 function roundResults(playerSelection, computerSelection) {
     let result = document.querySelector(".round-result")
+
     if (playerSelection == computerSelection) {
         result.textContent = "It's a tie!"
-    } else if ((playerSelection && computerSelection == 'paper') ||
+    } else if ((playerSelection == 'rock' && computerSelection == 'paper') ||
         (playerSelection == 'scissors' && computerSelection == 'rock') ||
         (playerSelection == 'paper' && computerSelection == 'scissors')) {
-        computerScore = ++computerScore
+
         result.textContent = `You lose! ${ computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${ playerSelection }.`
+
+        computerScore = ++computerScore
+        updateComputerScore()
     } else {
-        playerScore = ++playerScore
         result.textContent = `You win! ${ playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${ computerSelection }.`
+
+        playerScore = ++playerScore
+        updatePlayerScore()
+    }
+
+}
+
+function declareResult() {
+    let declareWinner = document.querySelector(".winner");
+    let numberOfRounds = document.getElementById("rounds").value
+    if ((playerScore == numberOfRounds) || (computerScore == numberOfRounds)) {
+        if (playerScore > computerScore) {
+            declareWinner.textContent = 'Game! You win!'
+            tryAgain()
+        } else if (computerScore > playerScore) {
+            declareWinner.textContent = 'Game! You lose!'
+            tryAgain()
+        } else {
+            declareWinner.textContent = 'Game! It\'s a tie!'
+            tryAgain()
+        }
+    } else {
+        //do nothing
     }
 }
 
@@ -39,25 +69,18 @@ choices.forEach((choice) => {
         playerSelection = choice.value
         computerSelection = computerPlay()
         console.log(roundResults(playerSelection, computerSelection))
+        declareResult()
     })
 })
 
-function game(numberOfRounds) {
-    // numberOfRounds = document.getElementById("rounds").value
-    for (let i = numberOfRounds; i > 0; --i) {
-
-    }
-}
 
 function updatePlayerScore() {
     let playerScoreCounter = document.querySelector(".player-score")
-
     playerScoreCounter.textContent = playerScore
 }
 
 function updateComputerScore() {
     let computerScoreCounter = document.querySelector(".computer-score")
-
     computerScoreCounter.textContent = computerScore
 }
 
