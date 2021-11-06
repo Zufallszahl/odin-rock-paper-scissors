@@ -6,11 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors</title>
-    <script src="script.js"></script>
 </head>
 
 <body>
+    <label for="rounds">How many rounds should we play?</label>
+    <input type="text" id="rounds" required placeholder="Number of rounds">
+    <input type="submit" value="Submit" onclick="checkIfRoundNumValid()">
 
+    <div class="integer-check"> </div>
+
+    <button class="player-choice" value="rock">Rock</button>
+    <button class="player-choice" value="paper">Paper</button>
+    <button class="player-choice" value="scissors">Scissors</button>
+
+    <div class="score">
+        <div class="score">Your score: <span class="player-score"> </span></div>
+        <div class="score">Computer score: <span class="computer-score"> </span></div>
+    </div>
+
+    <div class="round-result"> </div>
+
+    <div class="winner"> </div>
+
+    <div class="try-again">
+        <p class="prompt">Do you want to try again?</p>
+        <button class="try-again-choice" value="yes">Yes</button>
+        <button class="try-again-choice" value="no">No</button>
+    </div>
+
+    <div class="goodbye">Goodbye! Refresh the page to start over.</div>
+    <script src="./script.js"></script>
 </body>
 
 </html>
