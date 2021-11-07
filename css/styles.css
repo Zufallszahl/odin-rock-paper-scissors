@@ -25,8 +25,9 @@ body {
     font-family: 'Quicksand', sans-serif;
     font-size: 2.5rem;
     text-align: center;
+    position: relative;
     margin: auto;
-    width: max-content;
+    width: 100%;
     background-color: var(--main-bg-color);
 }
 
@@ -45,7 +46,7 @@ header {
     height: 75px;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
     justify-content: center;
     align-items: center;
 }
@@ -58,14 +59,15 @@ header {
     border: 3px solid var(--highlight-color);
     border-radius: 5px;
     text-align: center;
-    width: 100px;
+    font-size: 1.5rem;
+    width: 120px;
+    padding: 0.6rem;
     justify-self: end;
 }
 
 #submit-rounds {
     border: 3px solid var(--highlight-color);
     border-radius: 5px;
-    width: 75px;
     justify-self: start;
 }
 
@@ -106,7 +108,7 @@ header {
 
 /* IMAGES */
 
-.player-choice,
+button,
 img {
     vertical-align: middle;
     border: 2px solid var(--highlight-color);
@@ -125,10 +127,87 @@ img {
     box-shadow: var(--neon-border-blue)
 }
 
+.player-choice:disabled {
+    filter: grayscale(1);
+    transform: none;
+    box-shadow: none;
+}
+
+button {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5rem;
+    transition: all .3s ease;
+}
+
 button:active {
     transform: translateY(4px);
 }
 
 button:hover {
-    color: red;
+    color: whitesmoke;
+    background-color: var(--main-bg-color);
+}
+
+#submit-rounds,
+#try-again {
+    padding: 0.5rem 2rem;
+    font-size: 2rem;
+}
+
+#close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#close:hover,
+#close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* POPUP */
+
+#results {
+    display: none;
+    z-index: 1;
+    width: 30%;
+    margin: auto;
+    overflow: auto;
+    position: fixed;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.winner,
+.try-again {
+    background-color: var(--main-bg-color);
+}
+
+.winner {
+    padding-top: 2rem;
+}
+
+.try-again {
+    padding-bottom: 2rem;
+}
+
+.prompt {
+    margin-bottom: 1rem;
+}
+
+#shadow {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.6;
 }

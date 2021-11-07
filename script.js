@@ -1,12 +1,15 @@
 let playerScore = 0;
 let computerScore = 0;
 
-let choices = document.querySelectorAll(".player-choice")
-let declareWinner = document.querySelector(".winner");
-let result = document.querySelector(".round-result")
-
-let submitRounds = document.getElementById('submit-rounds');
-let inputForm = document.getElementById('rounds')
+const choices = document.querySelectorAll(".player-choice")
+const declareWinner = document.querySelector(".winner");
+const result = document.querySelector(".round-result")
+const submitRounds = document.getElementById('submit-rounds');
+const inputForm = document.getElementById('rounds')
+const again = document.getElementById('try-again')
+const closeButton = document.getElementById('close');
+const resultWindow = document.getElementById('results')
+const shadow = document.getElementById('shadow')
 
 const plays = ['rock', 'paper', 'scissors'];
 
@@ -26,9 +29,9 @@ function checkIfRoundNumValid() {
     }
 }
 
-submitRounds.addEventListener('click', () => {
-    checkIfRoundNumValid();
-});
+function startGame() {
+    choices.forEach((choice) => { choice.removeAttribute('disabled') })
+}
 
 function computerPlay() {
     return plays[~~(Math.random() * plays.length)]
@@ -59,17 +62,20 @@ function roundResults(playerSelection, computerSelection) {
 }
 
 function declareResult() {
-    let numberOfRounds = document.getElementById("rounds").value
-    let retryButton = document.querySelector("#try-again")
+    let numberOfRounds = document.getElementById("rounds").value;
+    let retryButton = document.querySelector("#try-again");
 
     if ((playerScore == numberOfRounds) || (computerScore == numberOfRounds)) {
         if (playerScore > computerScore) {
+            showResults()
             declareWinner.textContent = 'Game! You win!'
             retryButton.innerText = 'Play again?'
         } else if (computerScore > playerScore) {
+            showResults()
             declareWinner.textContent = 'Game! You lose!'
             retryButton.innerText = 'Try again?'
         } else {
+            showResults()
             declareWinner.textContent = 'Game! It\'s a tie!'
             retryButton.innerText = 'Try again?'
         }
@@ -77,15 +83,6 @@ function declareResult() {
         //do nothing
     }
 }
-
-choices.forEach((choice) => {
-    choice.addEventListener('click', () => {
-        playerSelection = choice.value
-        computerSelection = computerPlay()
-        roundResults(playerSelection, computerSelection)
-        declareResult()
-    })
-})
 
 function updatePlayerScore() {
     let playerScoreCounter = document.querySelector(".player-score")
@@ -105,8 +102,10 @@ function tryAgain() {
 
     declareWinner.textContent = ''
     result.textContent = ''
+    resultWindow.style.display = "none"
     document.querySelector('#number-of-rounds').textContent = 'How many rounds should we play?';
 
+    closeResults()
     reveal()
 }
 
@@ -120,17 +119,45 @@ function reveal() {
     inputForm.style.display = 'unset';
 }
 
-
-/* function game() {
-    for (let i = 0; i <= numberOfRounds; i++) {
-        alert(playRound(choice))
-    }
+function disable() {
+    choices.forEach((choice) => { choice.toggleAttribute('disabled') })
 }
-*/
 
-/*
-let test = prompt('Make your play')
-let numberOfRounds = prompt('How many rounds should we play for?')
+function showResults() {
+    resultWindow.style.display = "grid"
+    shadow.style.display = "block"
+}
 
-console.log(game()) 
-*/
+function closeResults() {
+    resultWindow.classList.remove('active')
+    shadow.style.display = "none"
+}
+
+again.addEventListener('click', () => {
+    tryAgain();
+    disable();
+})
+
+choices.forEach((choice) => {
+    choice.addEventListener('click', () => {
+        playerSelection = choice.value
+        computerSelection = computerPlay()
+        roundResults(playerSelection, computerSelection)
+        declareResult()
+    })
+})
+
+submitRounds.addEventListener('click', () => {
+    checkIfRoundNumValid();
+    startGame();
+});
+
+closeButton.addEventListener('click', () => {
+    tryAgain();
+    disable();
+    resultWindow.style.display = "none"
+});
+
+shadow.addEventListener('click', () => {
+    closeResults()
+})

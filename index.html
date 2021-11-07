@@ -27,25 +27,27 @@
         <button id="submit-rounds">Let's go!</button>
     </div>
     <div id="choices">
-        <button class="player-choice" value="rock"><img src="/img/rock.png" alt="man with stone" width="300" height="300"></button>
-        <button class="player-choice" value="paper"><img src="/img/paper.png" alt="man with scroll" width="300" height="300"></button>
-        <button class="player-choice" value="scissors"><img src="/img/scissors.png" alt="man with scissors" width="300" height="300"></button>
+        <button class="player-choice" value="rock" disabled><img src="/img/rock.png" alt="man with stone" width="300" height="300"></button>
+        <button class="player-choice" value="paper" disabled><img src="/img/paper.png" alt="man with scroll" width="300" height="300"></button>
+        <button class="player-choice" value="scissors" disabled><img src="/img/scissors.png" alt="man with scissors" width="300" height="300"></button>
     </div>
 
     <div id="score">
         <div class="score">Your score: <span class="player-score">0</span></div>
         <div class="score">Computer score: <span class="computer-score">0</span></div>
     </div>
-    <div id="#results">
-        <div class="round-result"> </div>
-
-        <div class="winner"> </div>
+    <div class="round-result"> </div>
+    <div id="shadow" onclick="tryAgain()"></div>
+    <div id="results" class="active">
+        <div class="winner"></div>
+        <div class="try-again">
+            <p class="prompt">Do you want to try again?</p>
+            <button id="try-again" value="yes"></button>
+        </div>
     </div>
 
-    <div class="try-again">
-        <p class="prompt">Do you want to try again?</p>
-        <button id="try-again" value="yes" onclick="tryAgain()">Try again</button>
-    </div>
+
+
     <script src="./script.js"></script>
 </body>
 
