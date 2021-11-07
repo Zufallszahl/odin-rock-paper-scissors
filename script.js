@@ -21,11 +21,12 @@ function checkIfRoundNumValid() {
     updatePlayerScore()
     updateComputerScore()
 
-    if (!Number.isInteger(parseFloat(rounds)) || (parseFloat(rounds) <= 0)) {
-        document.querySelector('#number-of-rounds').textContent = 'You need to input an integer larger than 0.';
-    } else {
+    if (Number.isInteger(parseFloat(rounds)) && (parseFloat(rounds) > 0)) {
         hide()
         document.querySelector('#number-of-rounds').textContent = 'Alright! Let\'s play.';
+    } else {
+        hide()
+        document.querySelector('#number-of-rounds').textContent = 'You need to input an integer larger than 0.';
     }
 }
 
