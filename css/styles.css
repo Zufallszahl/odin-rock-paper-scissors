@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Quicksand:wght@400;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-bg-color: rgb(97, 114, 131);
+    --rock-color: #272e30;
+    --paper-color: #dbca8b;
+    --scissors-color: rgb(189, 189, 189);
+    --highlight-color: #7098b8;
+    --neon-blue: #7fc7ff;
+    --neon-border-blue: 0 0 .2rem #aaa, 0 0 .2rem #aaa, 0 0 2rem var(--neon-blue), 0 0 0.8rem var(--neon-blue), 0 0 2.8rem var(--neon-blue), inset 0 0 1.3rem var(--neon-blue)
+}
+
+html {
+    font-size: 62.5%
+}
+
+
+/* SIZES AND PLACEMENT */
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: auto;
+    width: max-content;
+    background-color: var(--main-bg-color);
+}
+
+header>h1 {
+    font-family: 'Mochiy Pop P One', sans-serif;
+    word-spacing: 2rem;
+    margin: 2rem 0;
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+#how-many-rounds {
+    display: grid;
+    height: 75px;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+#number-of-rounds {
+    grid-column-start: span 2;
+}
+
+#rounds {
+    border: 3px solid var(--highlight-color);
+    border-radius: 5px;
+    text-align: center;
+    width: 100px;
+    justify-self: end;
+}
+
+#submit-rounds {
+    border: 3px solid var(--highlight-color);
+    border-radius: 5px;
+    width: 75px;
+    justify-self: start;
+}
+
+#integer-check {
+    grid-column-start: span 2;
+}
+
+.player-choice {
+    margin-bottom: 2rem;
+    margin-right: 3rem;
+}
+
+#score {
+    width: max-content;
+    margin: auto;
+    padding: 2rem;
+}
+
+
+/* TEXT */
+
+.rock {
+    color: var(--rock-color)
+}
+
+.paper {
+    color: var(--paper-color)
+}
+
+.scissors {
+    color: var(--scissors-color)
+}
+
+.score {
+    font-weight: 700;
+}
+
+
+/* IMAGES */
+
+.player-choice,
+img {
+    vertical-align: middle;
+    border: 2px solid var(--highlight-color);
+    border-radius: 1rem;
+}
+
+
+/* BUTTONS AND INPUT FORMS */
+
+.player-choice {
+    transition: all .5s ease;
+}
+
+.player-choice:hover {
+    transform: scale(1.1);
+    box-shadow: var(--neon-border-blue)
+}
+
+button:active {
+    transform: translateY(4px);
+}
+
+button:hover {
+    color: red;
+}

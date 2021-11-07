@@ -5,24 +5,38 @@ let choices = document.querySelectorAll(".player-choice")
 let declareWinner = document.querySelector(".winner");
 let result = document.querySelector(".round-result")
 
+let submitRounds = document.getElementById('submit-rounds');
+let inputForm = document.getElementById('rounds')
+
 const plays = ['rock', 'paper', 'scissors'];
 
 function checkIfRoundNumValid() {
+    let rounds = document.getElementById('rounds').value
+
     playerScore = 0;
     computerScore = 0;
     updatePlayerScore()
     updateComputerScore()
 
-    rounds = document.getElementById("rounds").value
-    if (!Number.isInteger(parseInt(rounds)) || (parseInt(rounds) <= 0)) {
-        document.querySelector('.integer-check').textContent = 'You need to input an integer number larger than 0.';
+    if (!Number.isInteger(parseFloat(rounds)) || (parseFloat(rounds) <= 0)) {
+        document.querySelector('#number-of-rounds').textContent = 'You need to input an integer larger than 0.';
     } else {
-        document.querySelector('.integer-check').textContent = 'Alright! Let\'s play.';
+        hide()
+        document.querySelector('#number-of-rounds').textContent = 'Alright! Let\'s play.';
     }
 }
 
+submitRounds.addEventListener('click', () => {
+    checkIfRoundNumValid();
+});
+
 function computerPlay() {
     return plays[~~(Math.random() * plays.length)]
+}
+
+function hide() {
+    var button = document.getElementById('hide');
+    button.style.display = "none";
 }
 
 function roundResults(playerSelection, computerSelection) {
@@ -91,6 +105,19 @@ function tryAgain() {
 
     declareWinner.textContent = ''
     result.textContent = ''
+    document.querySelector('#number-of-rounds').textContent = 'How many rounds should we play?';
+
+    reveal()
+}
+
+function hide() {
+    submitRounds.style.display = 'none';
+    inputForm.style.display = 'none';
+}
+
+function reveal() {
+    submitRounds.style.display = 'unset';
+    inputForm.style.display = 'unset';
 }
 
 
