@@ -21,9 +21,10 @@ function checkIfRoundNumValid() {
     updatePlayerScore()
     updateComputerScore()
 
-    if (Number.isInteger(Number(rounds) != NaN) && (Number(rounds) > 0)) {
+    if ((Number.isInteger(Number(rounds)) != NaN) && (Number(rounds) > 0)) {
         hide()
         document.querySelector('#number-of-rounds').textContent = 'Alright! Let\'s play.';
+        startGame();
     } else {
         document.querySelector('#number-of-rounds').textContent = 'You need to input an integer larger than 0.';
     }
@@ -149,7 +150,6 @@ choices.forEach((choice) => {
 
 submitRounds.addEventListener('click', () => {
     checkIfRoundNumValid();
-    startGame();
 });
 
 closeButton.addEventListener('click', () => {
