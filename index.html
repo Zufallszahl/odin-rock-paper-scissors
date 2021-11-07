@@ -5,12 +5,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock, Paper, Scissors</title>
-    <script src="script.js"></script>
+    <title>Rock Paper Scissors</title>
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+    <link href="css/fontawesome.min.css" rel="stylesheet">
+    <link href="css/duotone.min.css" rel="stylesheet">
 </head>
 
-<body>
+<header>
+    <h1><span class="rock">Rock</span> <span class="paper">Paper</span> <span class="scissors">Scissors</span></h1>
+    <p>
+        <span class="rock">Rock</span> > <span class="scissors">Scissors</span> |
+        <span class="paper">Paper</span> > <span class="rock">Rock</span> |
+        <span class="scissors">Scissors</span> > <span class="paper">Paper</span>
+    </p>
+</header>
 
+<body>
+    <div id="how-many-rounds">
+        <label for="rounds" id="number-of-rounds">How many rounds should we play?</label>
+        <input type="text" id="rounds" required placeholder="Number of rounds">
+        <button id="submit-rounds">Let's go!</button>
+    </div>
+    <div id="choices">
+        <button class="player-choice" value="rock" disabled><img src="/img/rock.png" alt="man with stone" width="300" height="300"></button>
+        <button class="player-choice" value="paper" disabled><img src="/img/paper.png" alt="man with scroll" width="300" height="300"></button>
+        <button class="player-choice" value="scissors" disabled><img src="/img/scissors.png" alt="man with scissors" width="300" height="300"></button>
+    </div>
+
+    <div id="score">
+        <div class="score">Your score: <span class="player-score">0</span></div>
+        <div class="score">Computer score: <span class="computer-score">0</span></div>
+    </div>
+    <div class="round-result"> </div>
+    <div id="shadow" onclick="tryAgain()"></div>
+    <div id="results" class="active">
+        <div class="winner"></div>
+        <div class="try-again">
+            <p class="prompt">Do you want to try again?</p>
+            <button id="try-again" value="yes"></button>
+        </div>
+    </div>
+
+
+
+    <script src="./script.js"></script>
 </body>
 
 </html>

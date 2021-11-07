@@ -1,0 +1,12 @@
+0. Start out with buttons hidden, only prompt visible. css
+1. Get the number of rounds from user. js +
+2. Store this number in a counter. + 
+3. Reveal buttons. - css
+4. Get the clicked button value from user. js +
+5. Compare this value against computer choice. +
+6. Return round result. +
+7. Decrease round counter by 1. -- (used a workaround)
+8. Repeat steps 4-7. -- (used a workaround)
+9. When round counter reaches 0, display [Try again? Y/N]
+10. If yes, repeat from step 1.
+11. If no, display goodbye message.
